@@ -8,7 +8,7 @@ def launch_preview_ui():
     root.title("Deck Tool - Preview UI")
     root.geometry("1000x600")
 
-    current_theme = tk.StringVar(value="Green")  # default theme
+    current_theme = tk.StringVar(value="Blue")  # default theme
 
     def on_theme_change(event=None):
         apply_theme(root, current_theme.get())
@@ -36,11 +36,11 @@ def launch_preview_ui():
     ttk.Combobox(control_frame, values=["Alphabetical", "Highest Value", "Card Type"], state='readonly', width=20).pack(side='left', padx=5)
 
     # Search bar
-    search_frame = tk.Frame(root)
+    search_frame = tk.Frame(root, height=40, bd=2, relief="ridge")
     search_frame.pack(fill='x', padx=10)
 
     tk.Label(search_frame, text="Search:").pack(side='left')
-    ttk.Entry(search_frame, width=40).pack(side='left', padx=5, fill='x', expand=True)
+    tk.Entry(search_frame, width=40).pack(side='left', padx=5, fill='x', expand=True)
     ttk.Button(search_frame, text="Clear").pack(side='left', padx=5)
 
     # Main content
@@ -53,7 +53,8 @@ def launch_preview_ui():
     deck_list = tk.Listbox(
         deck_frame,
         font=("Segoe UI", 10),
-        activestyle='none'
+        activestyle='none',
+        height=20
     )
     for i in range(40):
         deck_list.insert(tk.END, f"{i+1}x Placeholder Card Name")
@@ -66,7 +67,7 @@ def launch_preview_ui():
         image_frame,
         text="Card Image\n[Placeholder]",
         anchor="center",
-        relief="solid",
+        relief="groove",
         width=30,
         font=("Segoe UI", 10, "italic"),
         padx=10,

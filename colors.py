@@ -6,28 +6,45 @@ THEMES = {
         "accent": "#d7d7d7",    # subtle accent panel
         "text": "#3A3A3A",      # softened near-black for less strain
         "button": "#bfbfbf",    # light gray button
-        "highlight": "#8f8f8f"  # darker gray for selected/hovered states
-},
+        "highlight": "#8f8f8f",   # darker gray for selected/hovered states
+        "panel": "#d7d7d7",  # subtle accent panel for sidebars
+        "entry": "#ffffff",  # white for entry fields
+        "listbox": "#ffffff", # white for listboxes
+        "image_bg": "#ffffff" # white for image backgrounds
+    },
+    
     "Blue": {
         "bg": "#d0e7f9",       # light blue background
         "accent": "#a0b8cf",   # medium blue for sidebars/panels
         "text": "#000000",     # black for high contrast text
         "button": "#91b3d7",   # slightly darker blue for buttons
-        "highlight": "#4f78a0" # darker blue for highlights/selections
+        "highlight": "#4f78a0", # darker blue for highlights/selections
+        "panel": "#c3d5e6",  # medium blue for panels
+        "entry": "#d0e7f9",  # light blue for entry fields
+        "listbox": "#d0e7f9", # light blue for listboxes
+        "image_bg": "#d0e7f9" # light blue for image backgrounds
 },
     "Black": {
         "bg": "#1e1e1e",       # deep black for the main background
         "accent": "#3c3c3c",   # dark gray for sidebars/panels
         "text": "#FFFFFF",     # bright white for high contrast text
         "button": "#7a7a7a",   # medium gray for buttons
-        "highlight": "#d7d7d7" # light gray for highlights/selections
+        "highlight": "#d7d7d7", # light gray for highlights/selections
+        "panel": "#3c3c3c",  # dark gray for panels
+        "entry": "#1e1e1e",  # black for entry fields
+        "listbox": "#1e1e1e", # black for listboxes
+        "image_bg": "#1e1e1e" # black for image backgrounds
 },
     "Red": {
         "bg": "#5a1d1d",       # deep red for the main background
         "accent": "#b84a39",   # medium red for sidebars/panels
         "text": "#FFFFFF",     # bright white for high contrast text
         "button": "#e49273",   # light red for buttons
-        "highlight": "#f6d6b3" # very light red for highlights/selections
+        "highlight": "#f6d6b3", # very light red for highlights/selections
+        "panel": "#b84a39",  # medium red for panels
+        "entry": "#5a1d1d",  # deep red for entry fields
+        "listbox": "#5a1d1d", # deep red for listboxes
+        "image_bg": "#5a1d1d" # deep red for image backgrounds
 },
     "Green": {
         "bg": "#23331f",       # deep green for the main background
@@ -64,6 +81,29 @@ THEMES = {
         "button": "#4f78a0",   # medium blue for buttons
         "highlight": "#91b3d7" # light blue for highlights/selections
 },
+    "Orzhov": {
+        "bg": "#f8f7f3",       # very light gray for the main background
+        "accent": "#1e1e1e",   # black for sidebars/panels
+        "text": "#000000",     # black for high contrast text
+        "button": "#bbb6a6",   # medium gray for buttons
+        "highlight": "#7a7a7a" # dark gray for highlights/selections
+},
+    "Rakdos": {
+        "bg": "#1e1e1e",       # deep black for the main background
+        "accent": "#5a1d1d",   # deep red for sidebars/panels
+        "text": "#FFFFFF",     # bright white for high contrast text
+        "button": "#b84a39",   # light red for buttons
+        "highlight": "#f6d6b3" # very light red for highlights/selections
+},
+    "Gruul": {
+        "bg": "#5a1d1d",       # deep red for the main background
+        "accent": "#23331f",   # deep green for sidebars/panels
+        "text": "#FFFFFF",     # bright white for high contrast text
+        "button": "#6a995e",   # light green for buttons
+        "highlight": "#e49273" # light red for highlights/selections
+},
+    
+    
     "Rakdos": {"bg": "#1e1e1e", "accent": "#5a1d1d", "text": "#FFFFFF", "button": "#b84a39", "highlight": "#f6d6b3"},
     "Gruul": {"bg": "#5a1d1d", "accent": "#23331f", "text": "#FFFFFF", "button": "#6a995e", "highlight": "#e49273"},
     "Selesnya": {"bg": "#f8f7f3", "accent": "#6a995e", "text": "#000000", "button": "#8dcc7e", "highlight": "#bbb6a6"},
