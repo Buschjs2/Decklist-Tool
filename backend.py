@@ -96,7 +96,7 @@ def get_card_price(name, cache):
             price_str = data.get("prices", {}).get("usd")
             price = float(price_str) if price_str else 0.0
             type_line = data.get("type_line", "")
-            primary_type = type_line.split("—")[0].strip().split(" ")[-1] if type_line else "Other"
+            primary_type = type_line.split("—")[0].strip().split(" ")[-1]
             cache[name] = {"price": price, "type": primary_type}
             return price, primary_type
     except Exception:
