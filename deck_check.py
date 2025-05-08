@@ -47,7 +47,7 @@ def show_decklist_menu():
         print(f"{i + 1}: {name} - {unique} unique cards, {total} total cards")
     return decklists
 
-def find_multiple_matches(input_name, deck, max_matches=5):
+def find_multiple_matches(input_name, deck, max_matches=3):
     names = list(deck.keys())
     matches = difflib.get_close_matches(input_name.lower(), [name.lower() for name in names], n=max_matches, cutoff=0.5)
     match_dict = []
@@ -57,6 +57,46 @@ def find_multiple_matches(input_name, deck, max_matches=5):
                 match_dict.append(original)
     return match_dict
 
+def get_matching_card(input_name, deck):
+    lowered_input = input_name.lower()
+    all_cards = list(deck.keys())
+
+    # Exact match
+    card_lookup = {name.lower(): name for name in all_cards}
+    if lowered_input in card_lookup:
+        return card_lookup[lowered_input]
+
+    # Partial match
+    partial_matches = [name for name in all_cards if lowered_input in name.lower()]
+    if len(partial_matches) == 1:
+        return partial_matches[0]
+    elif len(partial_matches) > 1:
+        print("Multiple partial matches found:")
+        for i, name in enumerate(partial_matches):
+            print(f"{i + 1}: {name}")
+        print("0: Cancel")
+        selection = input("Enter number to select or 0 to cancel: ").strip()
+        if selection.isdigit():
+            idx = int(selection)
+            if 1 <= idx <= len(partial_matches):
+                return partial_matches[idx - 1]
+        return None
+
+    # Fuzzy match fallback
+    close_matches = find_multiple_matches(input_name, deck)
+    if close_matches:
+        print("Card not found. Did you mean:")
+        for i, name in enumerate(close_matches):
+            print(f"{i + 1}: {name}")
+        print("0: Cancel")
+        selection = input("Enter number to select or 0 to cancel: ").strip()
+        if selection.isdigit():
+            idx = int(selection)
+            if 1 <= idx <= len(close_matches):
+                return close_matches[idx - 1]
+
+    return None
+
 def main():
     decklists = show_decklist_menu()
     choice = int(input("\nSelect a decklist by number: ")) - 1
@@ -64,7 +104,7 @@ def main():
 
     load_decklist_original(filename)
     deck = load_decklist(filename)
-    history = []  # To store previous states for undo
+    history = []
 
     while True:
         print("\n--- Current Deck ---")
@@ -86,28 +126,11 @@ def main():
 
         elif action == 'r':
             input_name = input("Enter card name to remove: ").strip()
-
-            card_lookup = {k.lower(): k for k in deck.keys()}
-            key = input_name.lower()
-            selected_card = card_lookup.get(key)
-
-            if not selected_card:
-                close_matches = find_multiple_matches(input_name, deck)
-                if close_matches:
-                    print("Card not found. Did you mean:")
-                    for i, name in enumerate(close_matches):
-                        print(f"{i + 1}: {name}")
-                    print("0: Cancel")
-                    selection = input("Enter number to select or 0 to cancel: ").strip()
-                    if selection.isdigit():
-                        idx = int(selection)
-                        if 1 <= idx <= len(close_matches):
-                            selected_card = close_matches[idx - 1]
+            selected_card = get_matching_card(input_name, deck)
 
             if selected_card and selected_card in deck:
                 max_qty = deck[selected_card]
                 qty = int(input(f"How many to remove? (1-{max_qty}): "))
-                # Save previous state for undo
                 history.append(copy.deepcopy(deck))
                 if qty >= max_qty:
                     del deck[selected_card]
