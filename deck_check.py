@@ -1,7 +1,9 @@
 import os
 
+BACKUP_DIR = "backups"
+
 def list_decklists():
-    return [f for f in os.listdir() if f.endswith('.txt') and not f.endswith('.bak')]
+    return [f for f in os.listdir() if f.endswith('.txt') and not f.startswith(BACKUP_DIR)]
 
 def load_decklist(filename):
     deck = {}
@@ -27,11 +29,12 @@ def display_deck(deck):
 
 def load_decklist_original(filename):
     """Creates a backup of the original full decklist the first time it's accessed."""
-    backup_name = f"{filename}.bak"
-    if not os.path.exists(backup_name):
-        with open(filename, 'r') as f_orig, open(backup_name, 'w') as f_backup:
+    os.makedirs(BACKUP_DIR, exist_ok=True)
+    backup_path = os.path.join(BACKUP_DIR, f"{filename}.bak")
+    if not os.path.exists(backup_path):
+        with open(filename, 'r') as f_orig, open(backup_path, 'w') as f_backup:
             f_backup.write(f_orig.read())
-    return load_decklist(backup_name)
+    return load_decklist(backup_path)
 
 def show_decklist_menu():
     decklists = list_decklists()
@@ -48,7 +51,7 @@ def main():
     choice = int(input("\nSelect a decklist by number: ")) - 1
     filename = decklists[choice]
 
-    # Create backup if not already done
+    # Ensure original is backed up
     load_decklist_original(filename)
 
     deck = load_decklist(filename)
