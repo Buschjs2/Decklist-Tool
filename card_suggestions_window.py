@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QLabel, QListWidg
 from style import MODERN_STYLE
 from theme_manager import apply_theme
 from colors import THEMES
+from suggestion_box import SuggestionBox
 
 class CardSuggestionsWindow(QMainWindow):
     def __init__(self, shared_state, launcher):
@@ -26,6 +27,8 @@ class CardSuggestionsWindow(QMainWindow):
 
         search_layout = QHBoxLayout()
         self.search_input = QLineEdit()
+        self.search_input.setPlaceholderText("Type card name...")
+        self.search_input.textChanged.connect(self.on_text_changed)
         search_layout.addWidget(QLabel("Search:"))
         search_layout.addWidget(self.search_input)
         group_layout.addLayout(search_layout)
@@ -42,7 +45,30 @@ class CardSuggestionsWindow(QMainWindow):
         central.setLayout(layout)
         self.setCentralWidget(central)
 
+        self.suggestion_box = SuggestionBox(self)
+        self.suggestion_box.set_callback(self.select_suggestion)
+
     def _nav_button(self, label, callback):
         btn = QPushButton(f"Go to {label}")
         btn.clicked.connect(lambda: (self.close(), callback()))
         return btn
+
+    def on_text_changed(self, text):
+        if not text:
+            self.suggestion_box.hide()
+            return
+        matches = [card for card in self.shared_state.suggestions if text.lower() in card.lower()]
+        self.suggestion_box.update_suggestions(matches)
+        self.position_suggestion_box()
+
+    def select_suggestion(self, card_name):
+        self.search_input.setText(card_name)
+        self.suggestions_list.addItem(card_name)
+
+    def position_suggestion_box(self):
+        if not self.search_input.isVisible():
+            return
+        pos = self.search_input.mapToGlobal(self.search_input.rect().bottomLeft())
+        self.suggestion_box.move(pos)
+        self.suggestion_box.resize(self.search_input.width(), 120)
+        self.suggestion_box.raise_()
