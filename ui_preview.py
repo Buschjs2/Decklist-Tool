@@ -36,7 +36,7 @@ def launch_preview_ui():
     ttk.Combobox(control_frame, values=["Alphabetical", "Highest Value", "Card Type"], state='readonly', width=20).pack(side='left', padx=5)
 
     # Search bar
-    search_frame = tk.Frame(root, height=40, bd=2, relief="ridge")
+    search_frame = tk.Frame(root, height=40, bd=2, relief="ridge", name="search_frame")
     search_frame.pack(fill='x', padx=10)
 
     tk.Label(search_frame, text="Search:").pack(side='left')

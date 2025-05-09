@@ -37,10 +37,26 @@ def apply_theme(root, theme_name):
                 )
             elif cls == "Entry":
                 widget.configure(bg=theme.get("entry"), fg=theme["text"])
+            elif cls.startswith("T"):  # Handle ttk widgets
+                pass  # ttk widgets are styled via ttk.Style
         except:
             pass
 
         for child in widget.winfo_children():
             update_widget(child)
 
+    # Update all widgets
     update_widget(root)
+
+    # Update search bar specifically
+    search_frame = root.nametowidget("search_frame")
+    if search_frame:
+        search_bg = theme.get("search_bar_bg", theme.get("panel", theme["bg"]))
+        search_frame.configure(bg=search_bg)
+        for child in search_frame.winfo_children():
+            if isinstance(child, tk.Entry):
+                child.configure(bg=search_bg, fg=theme["text"])
+            elif isinstance(child, ttk.Widget):  # Handle ttk widgets
+                style.configure(f"{child.winfo_class()}.TWidget", background=search_bg)
+            else:
+                child.configure(bg=search_bg)
