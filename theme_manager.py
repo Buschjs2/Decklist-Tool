@@ -1,62 +1,92 @@
-# theme_manager.py
+from colors import THEMES, COLOR_THEME_MAP
+from PyQt6.QtWidgets import QWidget, QComboBox, QPushButton, QLabel, QListWidget, QLineEdit, QTextEdit
 
-import tkinter as tk
-from tkinter import ttk
-from colors import THEMES
-
-def apply_theme(root, theme_name):
+def apply_theme(window: QWidget, theme_name: str):
     theme = THEMES.get(theme_name)
     if not theme:
         return
 
-    root.configure(bg=theme.get("bg", "#FFFFFF"))
-    style = ttk.Style()
-    style.theme_use("clam")
+    gradient_bg = f"""
+    QMainWindow {{
+        background: qlineargradient(
+            x1: 0, y1: 0, x2: 0, y2: 1,
+            stop: 0 {theme['bg']}, stop: 1 {theme['panel']}
+        );
+    }}
 
-    # Global ttk styles
-    style.configure("TButton", background=theme.get("button"), foreground=theme.get("text"))
-    style.configure("TLabel", background=theme.get("bg"), foreground=theme.get("text"))
-    style.configure("TCombobox", fieldbackground=theme.get("entry"), background=theme.get("entry"), foreground=theme.get("text"))
+    QLabel#cardPreview {{
+        background: qlineargradient(
+            x1: 0, y1: 0, x2: 0, y2: 1,
+            stop: 0 {theme['image_bg']}, stop: 1 {theme['panel']}
+        );
+        color: {theme['text']};
+        border: 1px solid #888;
+        padding: 8px;
+        font-style: italic;
+        qproperty-alignment: AlignCenter;
+    }}
 
-    def update_widget(widget):
-        cls = widget.winfo_class()
+    QListWidget::item:selected {{
+        background: qlineargradient(
+            x1: 0, y1: 0, x2: 1, y2: 0,
+            stop: 0 {theme['highlight']}, stop: 1 {theme['panel']}
+        );
+        color: {theme['text']};
+    }}
 
-        try:
-            if cls == "Frame":
-                widget.configure(bg=theme.get("panel", theme["bg"]))
-            elif cls == "Label":
-                widget.configure(bg=theme.get("panel", theme["bg"]), fg=theme["text"])
-            elif cls == "Button":
-                widget.configure(bg=theme.get("button"), fg=theme["text"])
-            elif cls == "Listbox":
-                widget.configure(
-                    bg=theme.get("listbox", theme["bg"]),
-                    fg=theme["text"],
-                    selectbackground=theme.get("highlight"),
-                    selectforeground=theme["text"]
-                )
-            elif cls == "Entry":
-                widget.configure(bg=theme.get("entry"), fg=theme["text"])
-            elif cls.startswith("T"):  # Handle ttk widgets
-                pass  # ttk widgets are styled via ttk.Style
-        except:
-            pass
+    QGroupBox {{
+        background: qlineargradient(
+            x1: 0, y1: 0, x2: 0, y2: 1,
+            stop: 0 {theme['panel']}, stop: 1 {theme['bg']}
+        );
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        margin-top: 10px;
+    }}
+    QGroupBox::title {{
+        subcontrol-origin: margin;
+        left: 10px;
+        padding: 0 5px;
+        color: {theme['text']};
+    }}
+    """
 
-        for child in widget.winfo_children():
-            update_widget(child)
+    window.setStyleSheet(gradient_bg + f"""
+        QLabel {{
+            color: {theme['text']};
+            font-size: 14px;
+        }}
+        QListWidget {{
+            background-color: {theme['listbox']};
+            color: {theme['text']};
+            border: 1px solid #aaa;
+        }}
+        QLineEdit, QTextEdit {{
+            background-color: {theme['entry']};
+            color: {theme['text']};
+            border: 1px solid #aaa;
+            padding: 4px;
+        }}
+        QComboBox {{
+            background-color: {theme['entry']};
+            color: {theme['text']};
+        }}
+        QPushButton {{
+            background: qlineargradient(
+                x1: 0, y1: 0, x2: 1, y2: 0,
+                stop: 0 {theme['button']}, stop: 1 {theme['highlight']}
+            );
+            color: {theme['text']};
+            border-radius: 5px;
+            padding: 5px 10px;
+        }}
+        QPushButton:hover {{
+            background-color: {theme['highlight']};
+        }}
+    """)
 
-    # Update all widgets
-    update_widget(root)
+    def set_widget_style(widget):
+        for child in widget.findChildren(QWidget):
+            set_widget_style(child)
 
-    # Update search bar specifically
-    search_frame = root.nametowidget("search_frame")
-    if search_frame:
-        search_bg = theme.get("search_bar_bg", theme.get("panel", theme["bg"]))
-        search_frame.configure(bg=search_bg)
-        for child in search_frame.winfo_children():
-            if isinstance(child, tk.Entry):
-                child.configure(bg=search_bg, fg=theme["text"])
-            elif isinstance(child, ttk.Widget):  # Handle ttk widgets
-                style.configure(f"{child.winfo_class()}.TWidget", background=search_bg)
-            else:
-                child.configure(bg=search_bg)
+    set_widget_style(window)

@@ -1,388 +1,378 @@
-# colors.py - Centralized color definitions for MTG color combinations
-
 THEMES = {
-    "White": {
-        "bg": "#efefef",        # very light gray background
-        "accent": "#d7d7d7",    # subtle accent panel
-        "text": "#3A3A3A",      # softened near-black for less strain
-        "button": "#bfbfbf",    # light gray button
-        "highlight": "#8f8f8f",   # darker gray for selected/hovered states
-        "panel": "#d7d7d7",  # subtle accent panel for sidebars
-        "entry": "#ffffff",  # white for entry fields
-        "listbox": "#ffffff", # white for listboxes
-        "image_bg": "#ffffff", # white for image backgrounds
-        "search_bar_bg": "#d7d7d7"  # New color for the search bar
+"White": {
+    "bg": "#f8f6f1",         # light ivory background
+    "accent": "#e2dfd6",     # soft stone/cream
+    "text": "#2f2f2f",       # dark gray for readability
+    "button": "#d9d4cb",     # muted parchment tone
+    "highlight": "#bfbab0",  # slightly darker for hover/selection
+    "panel": "#ebe8e0",      # light cream panels
+    "entry": "#ffffff",      # pure white input fields
+    "listbox": "#f2f0eb",    # soft gray-beige for lists
+    "image_bg": "#dad6cc"    # subtle tan for image preview
 },
-    "Blue": {
-        "bg": "#d0e7f9",       # light blue background
-        "accent": "#a0b8cf",   # medium blue for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#91b3d7",   # slightly darker blue for buttons
-        "highlight": "#4f78a0", # darker blue for highlights/selections
-        "panel": "#c3d5e6",  # medium blue for panels
-        "entry": "#d0e7f9",  # light blue for entry fields
-        "listbox": "#d0e7f9", # light blue for listboxes
-        "image_bg": "#d0e7f9", # light blue for image backgrounds
-        "search_bar_bg": "#c3d5e6"  # New color for the search bar
+"Blue": {
+    "bg": "#e8f1f8",         # pale misty blue background
+    "accent": "#c1d6e8",     # cool steel-blue
+    "text": "#1d2e40",       # deep navy-gray for sharp contrast
+    "button": "#a4bed9",     # soft desaturated blue
+    "highlight": "#7fa6c4",  # slightly deeper for hover/active
+    "panel": "#d4e3f1",      # pale ocean-blue panels
+    "entry": "#ffffff",      # clear white inputs for legibility
+    "listbox": "#deedf7",    # very light ocean mist for list background
+    "image_bg": "#b0cce4"    # smooth middle blue for card preview
 },
-    "Black": {
-        "bg": "#1e1e1e",       # deep black for the main background
-        "accent": "#3c3c3c",   # dark gray for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#7a7a7a",   # medium gray for buttons
-        "highlight": "#d7d7d7", # light gray for highlights/selections
-        "panel": "#3c3c3c",  # dark gray for panels
-        "entry": "#1e1e1e",  # black for entry fields
-        "listbox": "#1e1e1e", # black for listboxes
-        "image_bg": "#1e1e1e", # black for image backgrounds
-        "search_bar_bg": "#3c3c3c"  # New color for the search bar
+"Black": {
+    "bg": "#1c1c1c",         # deep charcoal background
+    "accent": "#2e2e2e",     # darker slate gray for panels and headers
+    "text": "#e6e6e6",       # soft light gray for contrast (not pure white)
+    "button": "#3b3b3b",     # muted obsidian tone for buttons
+    "highlight": "#505050",  # slightly lighter for selection & hover
+    "panel": "#292929",      # panel shade—darker than background
+    "entry": "#2a2a2a",      # shadow-gray input fields
+    "listbox": "#232323",    # rich dark gray for list background
+    "image_bg": "#353535"    # mid-gray for card art framing
 },
-    "Red": {
-        "bg": "#5a1d1d",       # deep red for the main background
-        "accent": "#b84a39",   # medium red for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#e49273",   # light red for buttons
-        "highlight": "#f6d6b3", # very light red for highlights/selections
-        "panel": "#b84a39",  # medium red for panels
-        "entry": "#5a1d1d",  # deep red for entry fields
-        "listbox": "#5a1d1d", # deep red for listboxes
-        "image_bg": "#5a1d1d", # deep red for image backgrounds
-        "search_bar_bg": "#b84a39"  # New color for the search bar
+"Red": {
+    "bg": "#f9f2ef",         # pale clay or parchment background
+    "accent": "#dfb8a5",     # soft terracotta
+    "text": "#3a1c1a",       # rich reddish-brown for contrast
+    "button": "#e4a289",     # warm adobe tone
+    "highlight": "#c97b5c",  # deeper rust for hover/selection
+    "panel": "#f0d3c7",      # faint red-tinted tan
+    "entry": "#ffffff",      # clean white for inputs
+    "listbox": "#f7e5df",    # warm neutral for deck lists
+    "image_bg": "#d8a997"    # light brick tone for previews
 },
-    "Green": {
-        "bg": "#23331f",       # deep green for the main background
-        "accent": "#6a995e",   # light green for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#8dcc7e",   # medium green for buttons
-        "highlight": "#4f78a0", # darker blue for highlights/selections
-        "panel": "#6a995e",  # light green for panels
-        "entry": "#23331f",  # deep green for entry fields
-        "listbox": "#23331f", # deep green for listboxes
-        "image_bg": "#23331f", # deep green for image backgrounds
-        "search_bar_bg": "#6a995e"  # New color for the search bar
+"Green": {
+    "bg": "#eef4ee",         # soft sage-like mist
+    "accent": "#bfd9c2",     # cool pastel green-gray
+    "text": "#1f3321",       # deep forest green for clarity
+    "button": "#a9c9a3",     # warm fern or moss tone
+    "highlight": "#85ab82",  # slightly darker for hover/selection
+    "panel": "#d6e6d6",      # very light mint
+    "entry": "#ffffff",      # clean and neutral input fields
+    "listbox": "#e2efe1",    # misty green-gray for deck list background
+    "image_bg": "#abc3ab"    # light forest tint for image background
 },
-    "Colorless": {
-        "bg": "#efefef",       # very light gray for the main background
-        "accent": "#d7d7d7",   # subtle accent panel
-        "text": "#3A3A3A",     # softened near-black for less strain
-        "button": "#bfbfbf",   # light gray for buttons
-        "highlight": "#8f8f8f", # darker gray for selected/hovered states
-        "panel": "#d7d7d7",  # subtle accent panel for sidebars
-        "entry": "#ffffff",  # white for entry fields
-        "listbox": "#ffffff", # white for listboxes
-        "image_bg": "#ffffff", # white for image backgrounds
-        "search_bar_bg": "#d7d7d7"  # New color for the search bar
+"Azorius": {
+    "bg": "#f4f7fa",         # very pale misty blue-gray
+    "accent": "#cbdce7",     # soft institutional steel-blue
+    "text": "#2e3b4e",       # navy-gray for clarity
+    "button": "#b3c7d6",     # clean muted blue
+    "highlight": "#8faec7",  # deeper sky-blue for hover
+    "panel": "#e3ebf1",      # glassy blue-ivory for panels
+    "entry": "#ffffff",      # clean white inputs
+    "listbox": "#dfe8ef",    # calm light gray-blue
+    "image_bg": "#b5cbd9"    # soft slate for art preview
 },
-    "Azorius": {
-        "bg": "#e7f0f8",       # light blue for the main background
-        "accent": "#c3d5e6",   # medium blue for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#a0b8cf",   # slightly darker blue for buttons
-        "highlight": "#708fa6", # darker blue for highlights/selections
-        "panel": "#c3d5e6",  # medium blue for panels
-        "entry": "#e7f0f8",  # light blue for entry fields
-        "listbox": "#e7f0f8", # light blue for listboxes
-        "image_bg": "#e7f0f8", # light blue for image backgrounds
-        "search_bar_bg": "#c3d5e6"  # New color for the search bar
+"Boros": {
+    "bg": "#faf6f2",         # warm parchment base
+    "accent": "#e8cfc4",     # soft clay + chalk red
+    "text": "#3a2a23",       # dark warm gray-brown
+    "button": "#e6b8a8",     # desaturated red-gold
+    "highlight": "#cd8a70",  # rustic terracotta for selection
+    "panel": "#f1dfd4",      # pale dusty rose
+    "entry": "#ffffff",      # clean white inputs
+    "listbox": "#f6e8e0",    # pale flame-colored tone
+    "image_bg": "#d7b7a2"    # faded bronze-pink for framing
 },
-    "Boros": {
-        "bg": "#f8f7f3",       # very light gray for the main background
-        "accent": "#e49273",   # medium red for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#b84a39",   # light red for buttons
-        "highlight": "#5a1d1d", # deep red for highlights/selections
-        "panel": "#e49273",  # medium red for panels
-        "entry": "#f8f7f3",  # very light gray for entry fields
-        "listbox": "#f8f7f3", # very light gray for listboxes
-        "image_bg": "#f8f7f3", # very light gray for image backgrounds
-        "search_bar_bg": "#e49273"  # New color for the search bar
+"Dimir": {
+    "bg": "#1f2127",         # deep slate-gray-blue
+    "accent": "#2e3a4a",     # smoky navy tone
+    "text": "#d0d7e0",       # pale blue-gray text
+    "button": "#3a4757",     # muted ink-blue
+    "highlight": "#5b6c85",  # dusk-blue hover
+    "panel": "#2a2f37",      # soft black panels
+    "entry": "#2d3542",      # steely input fields
+    "listbox": "#262c33",    # dark neutral list background
+    "image_bg": "#3e4b5a"    # moody steel-blue for art
 },
-    "Dimir": {
-        "bg": "#2e4c6d",       # deep blue for the main background
-        "accent": "#1e1e1e",   # black for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#4f78a0",   # medium blue for buttons
-        "highlight": "#91b3d7", # light blue for highlights/selections
-        "panel": "#1e1e1e",  # black for panels
-        "entry": "#2e4c6d",  # deep blue for entry fields
-        "listbox": "#2e4c6d", # deep blue for listboxes
-        "image_bg": "#2e4c6d", # deep blue for image backgrounds
-        "search_bar_bg": "#1e1e1e"  # New color for the search bar
+"Golgari": {
+    "bg": "#1e211d",         # swampy dark moss
+    "accent": "#2f3b2e",     # deep forest floor
+    "text": "#d0d8cb",       # fungal pale text
+    "button": "#3a513a",     # soft leaf tone
+    "highlight": "#5e755e",  # mossy hover
+    "panel": "#2d342f",      # damp bark tone
+    "entry": "#2f3e2e",      # green-gray input fields
+    "listbox": "#262e26",    # muted mulch for lists
+    "image_bg": "#435843"    # soft decomposed green for images
 },
-    "Orzhov": {
-        "bg": "#f8f7f3",       # very light gray for the main background
-        "accent": "#1e1e1e",   # black for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#bbb6a6",   # medium gray for buttons
-        "highlight": "#7a7a7a", # dark gray for highlights/selections
-        "panel": "#1e1e1e",  # black for panels
-        "entry": "#f8f7f3",  # very light gray for entry fields
-        "listbox": "#f8f7f3", # very light gray for listboxes
-        "image_bg": "#f8f7f3", # very light gray for image backgrounds
-        "search_bar_bg": "#1e1e1e"  # New color for the search bar
-},
-    "Rakdos": {
-        "bg": "#1e1e1e",       # deep black for the main background
-        "accent": "#5a1d1d",   # deep red for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#b84a39",   # light red for buttons
-        "highlight": "#f6d6b3", # very light red for highlights/selections
-        "panel": "#5a1d1d",  # deep red for panels
-        "entry": "#1e1e1e",  # black for entry fields
-        "listbox": "#1e1e1e", # black for listboxes
-        "image_bg": "#1e1e1e", # black for image backgrounds
-        "search_bar_bg": "#5a1d1d"  # New color for the search bar
-},
+
     "Gruul": {
-        "bg": "#5a1d1d",       # deep red for the main background
-        "accent": "#23331f",   # deep green for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#6a995e",   # light green for buttons
-        "highlight": "#e49273", # light red for highlights/selections
-        "panel": "#23331f",  # deep green for panels
-        "entry": "#5a1d1d",  # deep red for entry fields
-        "listbox": "#5a1d1d", # deep red for listboxes
-        "image_bg": "#5a1d1d", # deep red for image backgrounds
-        "search_bar_bg": "#23331f"  # New color for the search bar
-},
-    "Selesnya": {
-        "bg": "#f8f7f3",       # very light gray for the main background
-        "accent": "#6a995e",   # light green for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#8dcc7e",   # medium green for buttons
-        "highlight": "#bbb6a6", # light gray for highlights/selections
-        "panel": "#6a995e",  # light green for panels
-        "entry": "#f8f7f3",  # very light gray for entry fields
-        "listbox": "#f8f7f3", # very light gray for listboxes
-        "image_bg": "#f8f7f3", # very light gray for image backgrounds
-        "search_bar_bg": "#6a995e"  # New color for the search bar
-},
-    "Simic": {
-        "bg": "#d0e7f9",       # light blue for the main background
-        "accent": "#6a995e",   # light green for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#91b3d7",   # slightly darker blue for buttons
-        "highlight": "#4f78a0", # darker blue for highlights/selections
-        "panel": "#6a995e",  # light green for panels
-        "entry": "#d0e7f9",  # light blue for entry fields
-        "listbox": "#d0e7f9", # light blue for listboxes
-        "image_bg": "#d0e7f9", # light blue for image backgrounds
-        "search_bar_bg": "#6a995e"  # New color for the search bar        
-},
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
     "Izzet": {
-        "bg": "#d0e7f9",       # light blue for the main background
-        "accent": "#e49273",   # medium red for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#b84a39",   # light red for buttons
-        "highlight": "#4f78a0", # darker blue for highlights/selections
-        "panel": "#e49273",  # medium red for panels
-        "entry": "#d0e7f9",  # light blue for entry fields
-        "listbox": "#d0e7f9", # light blue for listboxes
-        "image_bg": "#d0e7f9", # light blue for image backgrounds
-        "search_bar_bg": "#e49273"  # New color for the search bar
-},
-    "Golgari": {
-        "bg": "#1e1e1e",       # deep black for the main background
-        "accent": "#46663f",   # deep green for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#6a995e",   # light green for buttons
-        "highlight": "#8dcc7e", # light green for highlights/selections
-        "panel": "#46663f",  # deep green for panels
-        "entry": "#1e1e1e",  # black for entry fields
-        "listbox": "#1e1e1e", # black for listboxes
-        "image_bg": "#1e1e1e", # black for image backgrounds
-        "search_bar_bg": "#46663f"  # New color for the search bar
-},
-    "Esper": {
-        "bg": "#f8f7f3",       # very light gray for the main background
-        "accent": "#2e4c6d",   # deep blue for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#1e1e1e",   # black for buttons
-        "highlight": "#91b3d7", # light blue for highlights/selections
-        "panel": "#2e4c6d",  # deep blue for panels
-        "entry": "#f8f7f3",  # very light gray for entry fields
-        "listbox": "#f8f7f3", # very light gray for listboxes
-        "image_bg": "#f8f7f3", # very light gray for image backgrounds
-        "search_bar_bg": "#2e4c6d"  # New color for the search bar
-},
-    "Grixis": {
-        "bg": "#2e4c6d",       # deep blue for the main background
-        "accent": "#5a1d1d",   # deep red for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#3c3c3c",   # dark gray for buttons
-        "highlight": "#f6d6b3", # very light red for highlights/selections
-        "panel": "#5a1d1d",  # deep red for panels
-        "entry": "#2e4c6d",  # deep blue for entry fields
-        "listbox": "#2e4c6d", # deep blue for listboxes
-        "image_bg": "#2e4c6d", # deep blue for image backgrounds
-        "search_bar_bg": "#5a1d1d"  # New color for the search bar
-},
-    "Jund": {
-        "bg": "#1e1e1e",       # deep black for the main background
-        "accent": "#b84a39",   # medium red for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#6a995e",   # light green for buttons
-        "highlight": "#e49273", # light red for highlights/selections
-        "panel": "#b84a39",  # medium red for panels
-        "entry": "#1e1e1e",  # black for entry fields
-        "listbox": "#1e1e1e", # black for listboxes
-        "image_bg": "#1e1e1e", # black for image backgrounds
-        "search_bar_bg": "#b84a39"  # New color for the search bar
-},
-    "Naya": {
-        "bg": "#f8f7f3",       # very light gray for the main background
-        "accent": "#6a995e",   # light green for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#b84a39",   # light red for buttons
-        "highlight": "#e49273", # light red for highlights/selections
-        "panel": "#6a995e",  # light green for panels
-        "entry": "#f8f7f3",  # very light gray for entry fields
-        "listbox": "#f8f7f3", # very light gray for listboxes
-        "image_bg": "#f8f7f3", # very light gray for image backgrounds
-        "search_bar_bg": "#6a995e"  # New color for the search bar
-},
-    "Bant": {
-        "bg": "#f8f7f3",       # very light gray for the main background
-        "accent": "#6a995e",   # light green for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#d0e7f9",   # light blue for buttons
-        "highlight": "#91b3d7", # light blue for highlights/selections
-        "panel": "#6a995e",  # light green for panels
-        "entry": "#f8f7f3",  # very light gray for entry fields
-        "listbox": "#f8f7f3", # very light gray for listboxes
-        "image_bg": "#f8f7f3", # very light gray for image backgrounds
-        "search_bar_bg": "#6a995e"  # New color for the search bar
-},
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Orzhov": {
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Rakdos": {
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Selesnya": {
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Simic": {
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
     "Abzan": {
-        "bg": "#1e1e1e",       # deep black for the main background
-        "accent": "#f8f7f3",   # very light gray for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#6a995e",   # light green for buttons
-        "highlight": "#8dcc7e", # light green for highlights/selections
-        "panel": "#f8f7f3",  # very light gray for panels
-        "entry": "#1e1e1e",  # black for entry fields
-        "listbox": "#1e1e1e", # black for listboxes
-        "image_bg": "#1e1e1e", # black for image backgrounds
-        "search_bar_bg": "#f8f7f3"  # New color for the search bar
-},
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Bant": {
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Esper": {
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Grixis": {
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Jund": {
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
     "Mardu": {
-        "bg": "#1e1e1e",       # deep black for the main background
-        "accent": "#f6d6b3",   # very light red for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#b84a39",   # light red for buttons
-        "highlight": "#e49273", # light red for highlights/selections
-        "panel": "#f6d6b3",  # very light red for panels
-        "entry": "#1e1e1e",  # black for entry fields
-        "listbox": "#1e1e1e", # black for listboxes
-        "image_bg": "#1e1e1e", # black for image backgrounds
-        "search_bar_bg": "#f6d6b3"  # New color for the search bar
-},
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Naya": {
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
     "Sultai": {
-        "bg": "#1e1e1e",       # deep black for the main background
-        "accent": "#6a995e",   # light green for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#2e4c6d",   # deep blue for buttons
-        "highlight": "#4f78a0", # darker blue for highlights/selections
-        "panel": "#6a995e",  # light green for panels
-        "entry": "#1e1e1e",  # black for entry fields
-        "listbox": "#1e1e1e", # black for listboxes
-        "image_bg": "#1e1e1e", # black for image backgrounds
-        "search_bar_bg": "#6a995e"  # New color for the search bar
-},
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
     "Temur": {
-        "bg": "#6a995e",       # light green for the main background
-        "accent": "#d0e7f9",   # light blue for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#b84a39",   # light red for buttons
-        "highlight": "#4f78a0", # darker blue for highlights/selections
-        "panel": "#d0e7f9",  # light blue for panels
-        "entry": "#6a995e",  # light green for entry fields
-        "listbox": "#6a995e", # light green for listboxes
-        "image_bg": "#6a995e", # light green for image backgrounds
-        "search_bar_bg": "#d0e7f9"  # New color for the search bar
-},
-    "Glint": {
-        "bg": "#1e1e1e",       # deep black for the main background
-        "accent": "#f6d6b3",   # very light red for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#4f78a0",   # medium blue for buttons
-        "highlight": "#6a995e", # light green for highlights/selections
-        "panel": "#f6d6b3",  # very light red for panels
-        "entry": "#1e1e1e",  # black for entry fields
-        "listbox": "#1e1e1e", # black for listboxes
-        "image_bg": "#1e1e1e", # black for image backgrounds
-        "search_bar_bg": "#f6d6b3"  # New color for the search bar
-},
-    "Dune": {
-        "bg": "#f8f7f3",       # very light gray for the main background
-        "accent": "#5a1d1d",   # deep red for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#6a995e",   # light green for buttons
-        "highlight": "#b84a39", # light red for highlights/selections
-        "panel": "#5a1d1d",  # deep red for panels
-        "entry": "#f8f7f3",  # very light gray for entry fields
-        "listbox": "#f8f7f3", # very light gray for listboxes
-        "image_bg": "#f8f7f3", # very light gray for image backgrounds
-        "search_bar_bg": "#5a1d1d"  # New color for the search bar
-},
-    "Ink": {
-        "bg": "#1e1e1e",       # deep black for the main background
-        "accent": "#4f78a0",   # medium blue for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#5a1d1d",   # deep red for buttons
-        "highlight": "#d0e7f9", # light blue for highlights/selections
-        "panel": "#4f78a0",  # medium blue for panels
-        "entry": "#1e1e1e",  # black for entry fields
-        "listbox": "#1e1e1e", # black for listboxes
-        "image_bg": "#1e1e1e", # black for image backgrounds
-        "search_bar_bg": "#4f78a0"  # New color for the search bar
-},
-    "Witch": {
-        "bg": "#1e1e1e",       # deep black for the main background
-        "accent": "#6a995e",   # light green for sidebars/panels
-        "text": "#FFFFFF",     # bright white for high contrast text
-        "button": "#4f78a0",   # medium blue for buttons
-        "highlight": "#000000", # black for highlights/selections
-        "panel": "#6a995e",  # light green for panels
-        "entry": "#1e1e1e",  # black for entry fields
-        "listbox": "#1e1e1e", # black for listboxes
-        "image_bg": "#1e1e1e", # black for image backgrounds
-        "search_bar_bg": "#6a995e"  # New color for the search bar
-},
-    "Yore": {
-        "bg": "#f8f7f3",       # very light gray for the main background
-        "accent": "#b84a39",   # light red for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#d0e7f9",   # light blue for buttons
-        "highlight": "#6a995e", # light green for highlights/selections
-        "panel": "#b84a39",  # light red for panels
-        "entry": "#f8f7f3",  # very light gray for entry fields
-        "listbox": "#f8f7f3", # very light gray for listboxes
-        "image_bg": "#f8f7f3", # very light gray for image backgrounds
-        "search_bar_bg": "#b84a39"  # New color for the search bar
-},
-    "Jeskai": {
-        "bg": "#f8f7f3",       # very light gray for the main background
-        "accent": "#d0e7f9",   # light blue for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#e49273",   # medium red for buttons
-        "highlight": "#4f78a0", # darker blue for highlights/selections
-        "panel": "#d0e7f9",  # light blue for panels
-        "entry": "#f8f7f3",  # very light gray for entry fields
-        "listbox": "#f8f7f3", # very light gray for listboxes
-        "image_bg": "#f8f7f3", # very light gray for image backgrounds
-        "search_bar_bg": "#d0e7f9"  # New color for the search bar
-},
-    "FiveColor": {
-        "bg": "#f8f7f3",       # very light gray for the main background
-        "accent": "#6a995e",   # light green for sidebars/panels
-        "text": "#000000",     # black for high contrast text
-        "button": "#b84a39",   # light red for buttons
-        "highlight": "#4f78a0", # darker blue for highlights/selections
-        "panel": "#6a995e",  # light green for panels
-        "entry": "#f8f7f3",  # very light gray for entry fields
-        "listbox": "#f8f7f3", # very light gray for listboxes
-        "image_bg": "#f8f7f3", # very light gray for image backgrounds
-        "search_bar_bg": "#6a995e"  # New color for the search bar
-},
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Glint-Eye":{
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Dune-Brood":{
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Ink-Treader":{
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Witch-Maw":{
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Yore-Tiller":{
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Five-Color": {
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    },
+    "Colorless": {
+        "bg": "#f2f2f0",
+        "accent": "#cfd8dc",
+        "text": "#2f3e4e",
+        "button": "#b0bec5",
+        "highlight": "#78909c",
+        "panel": "#dbe3e6",
+        "entry": "#ffffff",
+        "listbox": "#e1e8ec",
+        "image_bg": "#c1ccd4"
+    }
+}
+
+COLOR_THEME_MAP = {
+    frozenset(["W"]): "White",
+    frozenset(["U"]): "Blue",
+    frozenset(["B"]): "Black",
+    frozenset(["R"]): "Red",
+    frozenset(["G"]): "Green",
+    frozenset(["W", "U"]): "Azorius",
+    frozenset(["W", "R"]): "Boros",
+    frozenset(["U", "B"]): "Dimir",
+    frozenset(["B", "G"]): "Golgari",
+    frozenset(["R", "G"]): "Gruul",
+    frozenset(["U", "R"]): "Izzet",
+    frozenset(["W", "B"]): "Orzhov",
+    frozenset(["B", "R"]): "Rakdos",
+    frozenset(["W", "G"]): "Selesnya",
+    frozenset(["G", "U"]): "Simic",
+    frozenset(["W", "B", "G"]): "Abzan",
+    frozenset(["W", "U", "G"]): "Bant",
+    frozenset(["U", "B", "W"]): "Esper",
+    frozenset(["B", "R", "U"]): "Grixis",
+    frozenset(["R", "G", "B"]): "Jund",
+    frozenset(["W", "R", "B"]): "Mardu",
+    frozenset(["R", "G", "W"]): "Naya",
+    frozenset(["G", "U", "B"]): "Sultai",
+    frozenset(["U", "R", "G"]): "Temur",
+    frozenset(["U", "B", "R", "G"]): "Glint-Eye",
+    frozenset(["W", "B", "G", "R"]): "Dune-Brood",
+    frozenset(["U", "R", "G", "W"]): "Ink-Treader",
+    frozenset(["W", "B", "G", "U"]): "Witch-Maw",
+    frozenset(["W", "B", "U", "R"]): "Yore-Tiller",
+    frozenset(["W", "U", "B", "R", "G"]): "Five-Color",
+    frozenset(["C"]): "Colorless",
 }

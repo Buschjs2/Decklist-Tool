@@ -1,90 +1,112 @@
-import tkinter as tk
-from tkinter import ttk
+from PyQt6.QtWidgets import (
+    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel,
+    QComboBox, QPushButton, QListWidget, QLineEdit, QSplitter, QFrame,
+    QGroupBox, QSizePolicy
+)
+from PyQt6.QtCore import Qt
 from theme_manager import apply_theme
 from colors import THEMES
+import sys
 
-def launch_preview_ui():
-    root = tk.Tk()
-    root.title("Deck Tool - Preview UI")
-    root.geometry("1000x600")
+class DeckToolRedesigned(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Deck Tool - Modern UI")
+        self.setGeometry(100, 100, 1200, 700)
+        self.current_theme = "Azorius"
 
-    current_theme = tk.StringVar(value="Blue")  # default theme
+        self.central_widget = QWidget()
+        self.setCentralWidget(self.central_widget)
 
-    def on_theme_change(event=None):
-        apply_theme(root, current_theme.get())
+        self.init_ui()
+        apply_theme(self, self.current_theme)
 
-    # Top control bar
-    control_frame = tk.Frame(root)
-    control_frame.pack(fill='x', padx=10, pady=10)
+    def init_ui(self):
+        main_layout = QVBoxLayout()
 
-    tk.Label(control_frame, text="Theme:").pack(side='left')
-    theme_selector = ttk.Combobox(
-        control_frame,
-        textvariable=current_theme,
-        values=sorted(THEMES.keys()),
-        state='readonly',
-        width=20
-    )
-    theme_selector.pack(side='left', padx=5)
-    theme_selector.bind("<<ComboboxSelected>>", on_theme_change)
+        # === Top Control Bar ===
+        top_controls = QHBoxLayout()
+        self.theme_box = QComboBox()
+        self.theme_box.addItems(sorted(THEMES.keys()))
+        self.theme_box.setCurrentText(self.current_theme)
+        self.theme_box.currentTextChanged.connect(self.change_theme)
 
-    tk.Label(control_frame, text="Select Deck:").pack(side='left', padx=(20, 0))
-    ttk.Combobox(control_frame, values=["Deck 1", "Deck 2"], state='readonly', width=30).pack(side='left', padx=5)
-    ttk.Button(control_frame, text="Load").pack(side='left', padx=5)
+        self.deck_box = QComboBox()
+        load_button = QPushButton("Load")
+        sort_box = QComboBox()
+        sort_box.addItems(["Alphabetical", "Highest Value", "Card Type"])
 
-    tk.Label(control_frame, text="Sort By:").pack(side='left', padx=(20, 0))
-    ttk.Combobox(control_frame, values=["Alphabetical", "Highest Value", "Card Type"], state='readonly', width=20).pack(side='left', padx=5)
+        top_controls.addWidget(QLabel("Theme:"))
+        top_controls.addWidget(self.theme_box)
+        top_controls.addSpacing(10)
+        top_controls.addWidget(QLabel("Select Deck:"))
+        top_controls.addWidget(self.deck_box)
+        top_controls.addWidget(load_button)
+        top_controls.addStretch()
+        top_controls.addWidget(QLabel("Sort By:"))
+        top_controls.addWidget(sort_box)
+        main_layout.addLayout(top_controls)
 
-    # Search bar
-    search_frame = tk.Frame(root, height=40, bd=2, relief="ridge", name="search_frame")
-    search_frame.pack(fill='x', padx=10)
+        # === Search Bar ===
+        search_layout = QHBoxLayout()
+        self.search_input = QLineEdit()
+        search_layout.addWidget(QLabel("Search:"))
+        search_layout.addWidget(self.search_input)
+        search_layout.addWidget(QPushButton("Clear"))
+        main_layout.addLayout(search_layout)
 
-    tk.Label(search_frame, text="Search:").pack(side='left')
-    tk.Entry(search_frame, width=40).pack(side='left', padx=5, fill='x', expand=True)
-    ttk.Button(search_frame, text="Clear").pack(side='left', padx=5)
+        # === Main Content Area (Split) ===
+        splitter = QSplitter(Qt.Orientation.Horizontal)
 
-    # Main content
-    content_frame = tk.Frame(root)
-    content_frame.pack(fill='both', expand=True, padx=10, pady=10)
+        # Deck List Group
+        deck_group = QGroupBox("Deck List")
+        deck_layout = QVBoxLayout()
+        self.deck_list = QListWidget()
+        for i in range(40):
+            self.deck_list.addItem(f"{i+1}x Placeholder Card Name")
+        deck_layout.addWidget(self.deck_list)
+        deck_group.setLayout(deck_layout)
+        splitter.addWidget(deck_group)
 
-    deck_frame = tk.Frame(content_frame)
-    deck_frame.pack(side='left', fill='both', expand=True)
+        # Card Preview Group
+        preview_group = QGroupBox("Card Preview")
+        preview_layout = QVBoxLayout()
+        self.image_label = QLabel("Card Image\n[Placeholder]")
+        self.image_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.image_label.setFrameStyle(QFrame.Shape.Box | QFrame.Shadow.Sunken)
+        preview_layout.addWidget(self.image_label)
+        preview_group.setLayout(preview_layout)
+        splitter.addWidget(preview_group)
 
-    deck_list = tk.Listbox(
-        deck_frame,
-        font=("Segoe UI", 10),
-        activestyle='none',
-        height=20
-    )
-    for i in range(40):
-        deck_list.insert(tk.END, f"{i+1}x Placeholder Card Name")
-    deck_list.pack(fill='both', expand=True)
+        # Deck Stats Group
+        stats_group = QGroupBox("Deck Stats")
+        stats_layout = QVBoxLayout()
+        self.stats_label = QLabel("Mana Curve:\n- 1 Drop: 5\n- 2 Drop: 10\n- ...\n\nCard Types:\n- Creatures: 24\n- Spells: 12")
+        stats_label_title = QLabel("Auto-generated stats based on deck content.")
+        stats_label_title.setWordWrap(True)
+        stats_layout.addWidget(stats_label_title)
+        stats_layout.addWidget(self.stats_label)
+        stats_group.setLayout(stats_layout)
+        splitter.addWidget(stats_group)
 
-    image_frame = tk.Frame(content_frame, width=250)
-    image_frame.pack(side='right', fill='y', padx=(10, 0))
+        splitter.setSizes([500, 350, 300])
+        main_layout.addWidget(splitter)
 
-    image_label = tk.Label(
-        image_frame,
-        text="Card Image\n[Placeholder]",
-        anchor="center",
-        relief="groove",
-        width=30,
-        font=("Segoe UI", 10, "italic"),
-        padx=10,
-        pady=10,
-        justify="center"
-    )
-    image_label.pack(fill='y', expand=True)
+        # === Bottom Bar ===
+        bottom_layout = QHBoxLayout()
+        bottom_layout.addWidget(QLabel("Total Deck Price: $123.45"))
+        bottom_layout.addStretch()
+        bottom_layout.addWidget(QPushButton("Save and Exit"))
+        main_layout.addLayout(bottom_layout)
 
-    # Bottom bar
-    bottom_frame = tk.Frame(root)
-    bottom_frame.pack(fill='x', padx=10, pady=(5, 10))
+        self.central_widget.setLayout(main_layout)
 
-    tk.Label(bottom_frame, text="Total Deck Price: $123.45", font=("Segoe UI", 10, "bold")).pack(side='left')
-    ttk.Button(bottom_frame, text="Save and Exit").pack(side='right')
-
-    apply_theme(root, current_theme.get())  # apply default theme
-    root.mainloop()
+    def change_theme(self, theme_name):
+        self.current_theme = theme_name
+        apply_theme(self, self.current_theme)
 
 if __name__ == "__main__":
-    launch_preview_ui()
+    app = QApplication(sys.argv)
+    window = DeckToolRedesigned()
+    window.show()
+    sys.exit(app.exec())
